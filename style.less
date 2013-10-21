@@ -1,0 +1,105 @@
+@fontfam: "Helvetica", sans-serif;
+@maincolor: white;
+@divwidth: 100% / 8;
+body {
+	background-image: url("tree_bark_bluetint.png");
+}
+
+body, a {
+	font-family: @fontfam;
+	color: @maincolor;
+	text-decoration: none;
+}
+
+.mixin(@color, @percent) {
+  color: darken(@color, @percent);
+}
+
+a:hover {
+	text-decoration: underline;
+	.mixin(rgb(53, 67, 75), 10%);
+	.mixin(rgb(53, 67, 75));
+}
+
+#main {
+	width: 100% - @divwidth - 4%;
+	margin-left: @divwidth + 2%;
+	margin-right: 2%;
+	.borders;
+}
+
+#copyrights {
+	clear: both;
+	margin-top: 2%;
+}
+
+div, nav a {
+	padding-top: @divwidth / 8;
+	padding-bottom: @divwidth / 8;
+	margin: 2px;
+	background-color: rgba(53, 67, 75, .3);
+	.borders;
+}
+
+.borders {
+	border: 2px solid white;
+}
+
+nav a {
+	float: left;
+	clear: both;
+	width: @divwidth;
+}
+
+nav a, h1, #copyrights {
+	text-align: center;
+}
+
+h1 {
+	padding: 3px;
+}
+
+.photos {
+	width: 48%;
+	height: 48%;
+	margin: 5px;
+	overflow: hidden;
+	text-align: center;
+	display: inline;
+	float: left;
+	position: relative;
+}
+.photo {
+	position: relative;
+	width: 100%;
+	height: auto;
+	max-height: 334px;
+	max-width: 500px;
+	display: block;
+}
+
+.view {
+	position: absolute;
+	margin-top: -45%;
+	margin-left: -10%;
+	width: 70px;
+	height: 70px;
+	.viewOpacity(0);
+}
+
+.viewOpacity(@opacityValue) {
+	opacity: @opacityValue;
+}
+
+.photos:hover{
+	.photo {
+		.viewOpacity(.5);
+	}
+	.view {
+		.viewOpacity(1);
+	}
+}
+
+.mixin(@a) when (iscolor(@a)) {
+  border-color: @a;
+}
